@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: etms
+      POSTGRES_USER: mario
+      POSTGRES_PASSWORD: mariopassword
+
+  cpp-backend:
+    build: ./cpp-backend
+    ports:
+      - "9999:9999"
+    depends_on:
+      - python-backend
+
+  python-backend:
+    build: ./python-backend
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./python-backend:/app
+    depends_on:
+      - db
+  
+  frontend:
+    build: ./etms_app_frontend/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - python-backend
+      

@@ -1,0 +1,18 @@
+# Node modules (frontend and backend)
+node_modules/
+etms_app_frontend/frontend/node_modules/
+
+# Environment files
+.env
+client/.env
+server/.env
+
+# Build output
+client/build/
+dist/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
