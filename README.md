@@ -48,16 +48,16 @@ To stop the container: Press CTRL + C
 
 ## PostgreSQL 
 
-username: mario
-password:mariopassword
+- username: mario
+- password:mariopassword
 
 ## Project File Structure 
 
 
 etms/
-├── cpp-backend/              # C++ Crow backend folder
-├── python-backend/           # Python Django backend folder
-├── etms_app_frontend/        # React TypeScript frontend folder
-├── docker-compose.yml        # Docker Compose configuration file
-├── README.md                 # Project documentation
+├── cpp-backend/ # C++ Crow backend folder
+├── python-backend/ # Python Django backend folder
+├── etms_app_frontend/ # React TypeScript frontend folder
+├── docker-compose.yml # Docker Compose configuration file
+├── README.md # Project documentation
 
