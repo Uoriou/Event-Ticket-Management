@@ -9,7 +9,7 @@ This platform allows easier listing of their event on the website along with a e
 To run ETMS, please ensure that your system meets the following requirements:
 
 - Operating System: Windows, macOS, or Linux
-- Docker
+- Docker / Docker desktop
 
 ## Libraries Used:
 
@@ -20,12 +20,12 @@ To run ETMS, please ensure that your system meets the following requirements:
 
 ## Installation Guidline
 
-- Please install Docker 
-- Make sure to download this ETMS project folder
+- Please install Docker desktop: https://www.docker.com/products/docker-desktop/
+- Make sure to clone this ETMS project
 
 ## Run the docker image
 
-Once Docker is installed, it is possible to use the .yml file of this project to build the docker image using this command: 
+Once Docker is installed, it is possible to use the .yml file of this project to build the docker image to run the project using this command: 
 ```bash 
     docker compose up -d --build 
 ```
