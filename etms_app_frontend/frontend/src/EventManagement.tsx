@@ -72,6 +72,7 @@ export default function EventManagement() {
 				aria-haspopup="true"
 				aria-expanded={open ? 'true' : undefined}
 				onClick={handleClick}
+				style={{color: '#e6e6e6' }}
 			>
 				Event Management
 			</Button>

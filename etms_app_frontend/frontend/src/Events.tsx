@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link,useLocation,useParams } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import axios from 'axios';
 
 
@@ -44,18 +50,45 @@ const Events = () => {
                 gridTemplateColumns: 'auto auto auto',
                 padding: '10px'
             }}>
+
+            
             {events && events.length > 0 ? (
                 events.map(event => (
                     <div key={event.id}>
-                        <p>Name: {event.name}</p>
-                        <Link to={`/event/${event.id}`}>
-                            <img src={`http://127.0.0.1:9000/${event.image}`} alt={event.name} width={250} />
-                        </Link>
-                        <p>{event.description}</p>
-                        <p>Venue: {event.venue}</p>
-                        <p>Date: {event.date}</p>
-                        <p>Price € {event.price}</p>
+                        <Card sx={{ maxWidth: 345 }}>
+                            <p>{event.name}</p>
+                            <CardMedia image={`http://127.0.0.1:9000/${event.image}`}  sx={{ height: 140 }} />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="div">
+                                {event.name}
+                                </Typography>
+                                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                                {event.description}
+                                <p>Venue: {event.venue}</p> 
+                                <p>
+                                    Date: {new Date(event.date).toLocaleDateString(undefined, {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                                </p>
+                                <p>Price € {event.price} per person</p>
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" 
+                                    variant="contained" 
+                                    component={Link}
+                                    to={`/event/${event.id}`}
+                                    color="primary"
+                                >
+                                    To book
+                                </Button> 
+                                <Button size="small" >Learn More</Button>
+                            </CardActions>
+                        </Card>
                     </div>
+                   
                 ))
             ) : (
                 <h1>No event listed</h1>

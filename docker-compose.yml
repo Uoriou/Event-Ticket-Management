@@ -27,6 +27,16 @@ services:
       - ./python-backend:/app
     depends_on:
       - db
+
+  express_backend: # I just added express.js backend service
+    build: ./express_backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - python-backend
+    volumes:
+      - ./express_backend:/app
+      - /app/node_modules
   
   frontend:
     build: ./etms_app_frontend/frontend
@@ -34,4 +44,7 @@ services:
       - "3000:3000"
     depends_on:
       - python-backend
+    volumes:
+      - ./etms_app_frontend/frontend:/app    # The source code is inside froentend folder         
+      - /app/node_modules  
       

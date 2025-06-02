@@ -105,7 +105,7 @@ function App() {
                         variant="filled"
                         sx={{ width: '100%' }}
                     > 
-                        You can log in to book an event
+                        The system detected an unexpected error
                     </Alert>
                 </Snackbar>
                 )}    
@@ -114,10 +114,10 @@ function App() {
         
         
         <Router>
-            <AppBar position="static" sx={{ backgroundColor: "#f4d1a4" }}>
+            <AppBar position="static" sx={{ backgroundColor: "#14141f" }}>
             <Toolbar>
                 <Box sx={{ flexGrow: 1 }}>
-                    <Link data-toggle="tab" to="/events" style={{ marginRight: '12px', color: '#000000' }}>Events</Link>
+                    <Link data-toggle="tab" to="/events" style={{ marginRight: '12px', color: '#e6e6e6' }}>Events</Link>
                    
                     {/*Can do access control here */}
                     <EventManagement/>
@@ -126,7 +126,7 @@ function App() {
                     <Link to= {"./profile"}>
                         <Chip avatar={<Avatar>P</Avatar>} label={localStorage.getItem("username")}/>
                     </Link>
-                    <Link  data-toggle="tab" to="/logout" style={{ marginRight: '12px', color: '#000000' }} >Logout</Link>
+                    <Link  data-toggle="tab" to="/logout" style={{ marginRight: '12px', color: '#e6e6e6' }} >Logout</Link>
             </Toolbar>
             </AppBar>
         

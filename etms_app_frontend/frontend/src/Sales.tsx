@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link,useLocation,useParams } from 'react-router-dom';
-import { ACCESS_TOKEN} from './Constants';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import { LineChart } from '@mui/x-charts';
 import axios from 'axios';
 
 
@@ -24,7 +28,6 @@ const Sales = ({username}:any)=>{
 
     const [salesReport,setSalesReport] = useState<SalesInfo[]>([]);
     //const { id } = useParams<{ id: string }>();
-    //const id = 
     console.log(username); // why it is undefined
     const location = useLocation();
     const { value } = location.state || {}; 
@@ -45,6 +48,17 @@ const Sales = ({username}:any)=>{
             
         }
 
+        const Item = styled(Paper)(({ theme }) => ({
+            backgroundColor: '#fff',
+            ...theme.typography.body2,
+            padding: theme.spacing(1),
+            textAlign: 'center',
+            color: (theme.vars ?? theme).palette.text.secondary,
+            ...theme.applyStyles('dark', {
+                backgroundColor: '#1A2027',
+            }),
+        }));
+
      useEffect(() => {
         fetchSales();
     },[]);
@@ -53,6 +67,22 @@ const Sales = ({username}:any)=>{
         <>
 
         <h1>Sales Dashboard</h1>
+        <Grid container spacing={2} columns={{ xs: 4, sm: 8, md: 12 }}>
+            <Grid size={4} >
+                <Item>size=4</Item>
+            </Grid>
+        </Grid>
+        <LineChart
+            xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+            series={[
+                {
+                data: [2, 5.5, 2, 8.5, 1.5, 5],
+                area: true,
+                },
+            ]}
+            height={300}
+        />
+     
         {salesReport? salesReport.map((i) => (
             <div key={i.id}>
                 <p>Total Sales of the event €: {i.sales}</p>
