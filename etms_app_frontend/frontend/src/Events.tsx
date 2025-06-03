@@ -56,24 +56,29 @@ const Events = () => {
                 events.map(event => (
                     <div key={event.id}>
                         <Card sx={{ maxWidth: 345 }}>
-                            <p>{event.name}</p>
                             <CardMedia image={`http://127.0.0.1:9000/${event.image}`}  sx={{ height: 140 }} />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                {event.name}
+                                    {event.name}
                                 </Typography>
                                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                                {event.description}
-                                <p>Venue: {event.venue}</p> 
-                                <p>
+                                    {event.description}
+                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Venue: {event.venue}
+                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">
                                     Date: {new Date(event.date).toLocaleDateString(undefined, {
                                         year: 'numeric',
                                         month: 'long',
                                         day: 'numeric'
                                     })}
-                                </p>
-                                <p>Price € {event.price} per person</p>
+                            
                                 </Typography>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Price € {event.price} per person
+                                </Typography>
+                                
                             </CardContent>
                             <CardActions>
                                 <Button size="small" 

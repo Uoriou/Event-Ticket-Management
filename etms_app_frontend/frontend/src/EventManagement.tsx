@@ -8,6 +8,10 @@ import axios from 'axios';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Button } from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 
 interface IsAttendee {
@@ -87,15 +91,15 @@ export default function EventManagement() {
 				}}
 			> 	{/* Yeah it works*/}
 				{ organizer ? (
-					<MenuItem component={Link} to="/add-event/" state={{ value: attendee?.is_attendee }} onClick={handleClose}>Add</MenuItem>
+					<MenuItem component={Link} to="/add-event/" state={{ value: attendee?.is_attendee }} onClick={handleClose}> <AddBoxIcon/> <strong>Add</strong> </MenuItem>
 				) : (
 					<MenuItem disabled>
 						Please register as an event organizer <HowToRegIcon />
 					</MenuItem>
 				)}
-				{ organizer && (<MenuItem onClick={handleClose} component={Link} to="/edit">Edit </MenuItem>)}
-				{ organizer && (<MenuItem onClick={handleClose} component={Link} to="/delete-event/">Delete</MenuItem>)}
-				{ organizer && (<MenuItem onClick={handleClose} component={Link} to= '/sales' state = {{value:attendee?.id}}>Sales </MenuItem>)}
+				{ organizer && (<MenuItem onClick={handleClose} component={Link} to="/edit"> <EditIcon/> <strong> Edit</strong></MenuItem>)}
+				{ organizer && (<MenuItem onClick={handleClose} component={Link} to="/delete-event/"> <DeleteForeverIcon/> <strong> Delete</strong></MenuItem>)}
+				{ organizer && (<MenuItem onClick={handleClose} component={Link} to= '/sales' state = {{value:attendee?.id}}> <BarChartIcon/> <strong> Sales </strong></MenuItem>)}
 				
 			</Menu>
 

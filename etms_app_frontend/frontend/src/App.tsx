@@ -124,7 +124,7 @@ function App() {
                 </Box>
                     {/*<Link data-toggle="tab" to="/profile" style = {{marginRight: '12px',color:"black"}}>Profile</Link>*/}
                     <Link to= {"./profile"}>
-                        <Chip avatar={<Avatar>P</Avatar>} label={localStorage.getItem("username")}/>
+                        <Chip avatar={<Avatar>P</Avatar>} label={localStorage.getItem("username")}/> {/*Seems wrong */}
                     </Link>
                     <Link  data-toggle="tab" to="/logout" style={{ marginRight: '12px', color: '#e6e6e6' }} >Logout</Link>
             </Toolbar>
@@ -149,7 +149,7 @@ function App() {
                     <Route path = "/edit" element  = {<EditEvent propEventToEdit = {eventInfo}/>}/>
                     <Route path = "edit/:id"  element={<EditEventMain/>}/>
                    
-                    <Route path="/sales" element={<Sales userId={user?.username} />} />
+                    <Route path="/sales" element={<Sales event={eventInfo} />} />
                   
                     {/*Pass in eventInfo as a prop */}
                     <Route path="/profile" element={
