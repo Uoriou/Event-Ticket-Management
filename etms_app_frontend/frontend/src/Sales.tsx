@@ -91,33 +91,24 @@ const Sales = ({event}:any)=>{
                     />
                 </Item> 
             </Grid>
-            
-            {salesReport && event ? (
-                salesReport.map((i) => {
-                    const matchedEvent = event.find((j: any) => Number(i.eventId) === j.id);
-                    {/*I need to pass array inside the Piechart props */}
-                    return (
-                        <div key={i.eventId}>
-                            <h2>Event</h2>
-                            <p>Sales: {i.sales}</p>
-                            <p>Name: {matchedEvent?.name || 'Unknown Event'}</p>
 
-                            <PieChart
-                            series={[
-                                {
-                                data: [
-                                
-                                    { id: i.eventId, value: i.sales, label: "event"},
-                                   
-                                ],
-                                },
-                            ]}
-                            width={200}
-                            height={200}
-                            />
-                        </div>
-                    );
-                })
+           {salesReport && event ? (
+                <PieChart
+                    series={[
+                        {
+                            data: salesReport.map((i) => {
+                            const matchedEvent = event.find((j: any) => Number(i.eventId) === j.id);
+                            return {
+                                id: i.eventId,
+                                value: i.sales,
+                                label: matchedEvent?.name || `Event ${i.eventId}`,
+                            };
+                            }),
+                        },
+                    ]}
+                    width={200}
+                    height={200}
+                />
                 ) : (
                 <p>Loading data...</p>
             )}
