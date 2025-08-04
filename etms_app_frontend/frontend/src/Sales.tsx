@@ -5,10 +5,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { LineChart, PieChart } from '@mui/x-charts'; 
-
 import axios from 'axios';
-
-
 
 interface SalesInfo{
     id:number,
@@ -24,27 +21,26 @@ interface User{
     is_staff:string,
 
 }
-
+// Sales Dashboard frontend 
+// A sales recording processes is not happening here, instead this is just to display data
 const Sales = ({event}:any)=>{
 
     const [salesReport,setSalesReport] = useState<SalesInfo[]>([]);
     const location = useLocation();
     const { value } = location.state || {};  //useLocation, useful in props 
     const [total,setTotal] = useState(0);
-
+    // Fetch the sales data from C++ backend
     async function fetchSales(){
- 
+
             await axios.get<SalesInfo[]>(`http://localhost:9999/get_sales/`) // it was without id 
             .then(response => {
                 setSalesReport(response.data); // Write the logic to extract the organizer
                 console.log(response.data)
                 console.log(event);
-                
             })
             .catch(() =>{
                 alert("Could not fetch the data")
             })
-            
         }
 
         const Item = styled(Paper)(({ theme }) => ({
@@ -58,19 +54,16 @@ const Sales = ({event}:any)=>{
             }),
         }));
 
-     useEffect(() => {
+    useEffect(() => {
         fetchSales();
     },[]);
 
     return(
         <>
         <h1>Sales Dashboard</h1>
-       
-       
-    
         <Box display="flex" gap={2}>
             <Grid size={4} >
-                {/* Calculate total sales using reduce !!  */}
+                {/*Calculate total sales using reduce !!  */}
                 <Item>
                     <h2>Total sales: {salesReport.reduce((sum, i) => sum + i.sales, 0)}€</h2>
                 </Item> 
@@ -101,7 +94,7 @@ const Sales = ({event}:any)=>{
                             return {
                                 id: i.eventId,
                                 value: i.sales,
-                                label: matchedEvent?.name || `Event ${i.eventId}`,
+                                label: matchedEvent?.name || `Event ${i.eventId} `,
                             };
                             }),
                         },

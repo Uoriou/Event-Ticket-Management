@@ -1,5 +1,4 @@
 import React, { useState,useEffect, } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Events from './Events';
 import CreateEvent  from './CreateEvent';
@@ -10,6 +9,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from './Constants';
 import { AppBar, Toolbar, Select,Box, colors,Chip,Avatar,Button } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route, Link,Navigate,} from 'react-router-dom';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Alert from '@mui/material/Alert';
 import axios from 'axios';
 import Profile from './Profile';
@@ -46,11 +46,10 @@ function App() {
     const [eventInfo,setEventInfo] = useState<Event[]>();
     const [error,setError] = useState<boolean | null>(null);
     const [open,setOpen] = React.useState(false);
-   
+    // todo: Can use graphQL here 
     async function fetchUsers(){ // i just changed this to async function
         const accessToken = localStorage.getItem(ACCESS_TOKEN);
         if (!accessToken) {
-            //console.error("No access token found");
             return;
         }
         try {
@@ -59,7 +58,7 @@ function App() {
                     "Authorization": `Bearer ${accessToken|| ''}`
                 },
             }).then((response)=>{
-                //console.log("Currently logged in as :", response.data[0]);
+                console.log("Currently logged in as :", response.data);
                 setUser(response.data.length > 0 ? response.data[0] : null); 
                 setError(false);
                
@@ -73,7 +72,6 @@ function App() {
             });
             if(responseEvent.data.length > 0){
                 setEventInfo(responseEvent.data);
-                console.log(responseEvent.data)
             } 
                    
         //Not correct error handling     
@@ -86,7 +84,6 @@ function App() {
     const handleClose = (event: React.SyntheticEvent<any>, reason?: SnackbarCloseReason) => {
         setOpen(false);
     };
-
 
     useEffect(()=>{
         fetchUsers();  
@@ -109,23 +106,16 @@ function App() {
                     </Alert>
                 </Snackbar>
                 )}    
-
         </div>
-        
-        
+    
         <Router>
             <AppBar position="static" sx={{ backgroundColor: "#14141f" }}>
             <Toolbar>
                 <Box sx={{ flexGrow: 1 }}>
                     <Link data-toggle="tab" to="/events" style={{ marginRight: '12px', color: '#e6e6e6' }}>Events</Link>
-                   
-                    {/*Can do access control here */}
                     <EventManagement/>
                 </Box>
-                    {/*<Link data-toggle="tab" to="/profile" style = {{marginRight: '12px',color:"black"}}>Profile</Link>*/}
-                    <Link to= {"./profile"}>
-                        <Chip avatar={<Avatar>P</Avatar>} label={localStorage.getItem("username")}/> {/*Seems wrong */}
-                    </Link>
+                    <Link data-toggle="tab" to="/profile" style = {{marginRight: '12px',color:"white"}}><PersonOutlineIcon/> </Link>
                     <Link  data-toggle="tab" to="/logout" style={{ marginRight: '12px', color: '#e6e6e6' }} >Logout</Link>
             </Toolbar>
             </AppBar>

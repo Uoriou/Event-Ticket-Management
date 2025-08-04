@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Form, useParams } from 'react-router-dom';
 import { FormControl, Input,InputLabel,FormHelperText,TextField,Button } from '@mui/material';
 import Snackbar, { SnackbarCloseReason } from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -64,7 +64,7 @@ const Booking = ({access}:any) =>{ // Just testing props, access it a user id
         console.log(access); // how come it is undefined ?    
     }
 
-    function handleSubmit(e:React.SyntheticEvent){
+    async function handleSubmit(e:React.SyntheticEvent){
         const accessToken = localStorage.getItem(ACCESS_TOKEN);
         if (!accessToken) {
             console.error("No access token found");// Dont forget to remove it 
@@ -75,11 +75,10 @@ const Booking = ({access}:any) =>{ // Just testing props, access it a user id
         if (event) {
               
             try{
-                //Here also update the attendee event info by posting to Django
+                //Here also update the attendee event info by posting to Django separately
                 const formData = new FormData()
                 formData.append("user",userId.toString()); //Confusion with ID
                 formData.append("eventId", event.id.toString())
-                //Event organizer can not book an event..... 
                 axios.post("http://127.0.0.1:9000/etms/update_attendee_event/",formData,{
                     headers:{
                         "Content-Type":"multipart/form-data",
@@ -93,29 +92,34 @@ const Booking = ({access}:any) =>{ // Just testing props, access it a user id
             } catch (e) {
                 alert(e);
                 setError(true);
-                return ; // Just testing 
-                
+                return ; // Just testing  
             }
 
             try{
-
                 const salesData = {
-                    eventId: event.id,
-                    price: event.price,
-                    participants: event.participant,
-                    
+                    eventId: event.id.toString(),
+                    price: event.price.toString(),
+                    participants: event.participant.toString(), 
                 };
-                console.log(event.price)
-                //Send to the C++ backend or else
-                axios.put(`http://localhost:9000/etms/update_sales/`,salesData,{
+                
+                //Send to the backend; updates the corresponding sales records
+                // ! ERROR -> make sure that an event organizer can not book an event
+                // ! sending to Express.js and not formData but JSON !
+                if(event.id === Number(id)){ // ! Error prone 
+                    await axios.put(`http://localhost:4000/book_event/`,salesData,{
                     headers:{
-                        "Content-Type":"multipart/form-data",
+                        "Content-Type":"application/json",
                         "Authorization": `Bearer ${localStorage.getItem(ACCESS_TOKEN) || ''}`
                     },
                 }).then(() => {
                     setError(false);
                     setOpen(true);
-                })
+                    console.log("Saving the sales record to the backend")
+                }).catch(error => {
+                    console.error("Axios error:", error);
+                });
+                }
+                
 
             }catch(e){
                 alert("Could not book the event / something wrong with your booking")

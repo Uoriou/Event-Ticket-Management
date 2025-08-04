@@ -17,19 +17,6 @@ using json = nlohmann::json;
 int main(){
 
     crow::SimpleApp app;//Used to initialise CROW server  
-
-    CROW_ROUTE(app, "/id").methods("GET"_method)([&](const crow::request& req) {
-
-        //The idea is to communicate with Django server and the front end using APIs
-        auto request = cpr::Get(Url{"http://127.0.0.1:9000/etms/users/"});// This is python server
-        crow::response res(request.text);
-        res.set_header("Access-Control-Allow-Origin", "http://localhost:3000"); 
-        res.set_header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        res.set_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-        return res; // store it globally
-    });
-
     //Handle Sales report here
     //Connect to the postgre sql server db first
     //Then get the user data from python django server
@@ -80,15 +67,17 @@ int main(){
     });
 
     CROW_ROUTE(app, "/record_sales").methods("PUT"_method, "OPTIONS"_method)([](const crow::request& req){
-         auto add_cors = [](crow::response& res) {
-            res.add_header("Access-Control-Allow-Origin", "http://localhost:3000");
+        auto add_cors = [](crow::response& res) {
+            res.add_header("Access-Control-Allow-Origin", "*");
             res.add_header("Access-Control-Allow-Methods", "POST, OPTIONS ,PUT");
             res.add_header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         };
+        cout<<"Record sales endpoint hit"<<endl;
         crow::response res;
         if (req.method == "OPTIONS"_method) {
             add_cors(res);
             res.code = 200;
+            res.body = "OK";  
             return res;
         }
 
@@ -101,7 +90,8 @@ int main(){
                 add_cors(res);
                 return res;
             }
-            cout<<body<<endl;
+            //cout<<body<<endl;
+            cout<<"Hello"<<endl;
 
             //Extract the required data from the frontend
             if (!body.has("eventId") || !body.has("price") || !body.has("participants")) {
@@ -136,9 +126,18 @@ int main(){
             add_cors(res);
             return res;
 
-        } catch (const std::exception& e) {
-            return crow::response(500, std::string("Server error: ") + e.what());
+        } 
+        catch (const std::exception& e) {
+            res.code = 500;
+            res.body = std::string("Server error: ") + e.what();
+            add_cors(res);
+            return res;
         }
+
+        
+        //catch (const std::exception& e) {
+            //return crow::response(500, std::string("Server error: ") + e.what());
+        //}
     });
 
 
