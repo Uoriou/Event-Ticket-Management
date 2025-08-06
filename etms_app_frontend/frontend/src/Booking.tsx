@@ -105,8 +105,8 @@ const Booking = ({access}:any) =>{ // Just testing props, access it a user id
                 //Send to the backend; updates the corresponding sales records
                 // ! ERROR -> make sure that an event organizer can not book an event
                 // ! sending to Express.js and not formData but JSON !
-                if(event.id === Number(id)){ // ! Error prone 
-                    await axios.put(`http://localhost:4000/book_event/`,salesData,{
+                
+                await axios.put(`http://localhost:4000/book_event/`,salesData,{
                     headers:{
                         "Content-Type":"application/json",
                         "Authorization": `Bearer ${localStorage.getItem(ACCESS_TOKEN) || ''}`
@@ -118,9 +118,8 @@ const Booking = ({access}:any) =>{ // Just testing props, access it a user id
                 }).catch(error => {
                     console.error("Axios error:", error);
                 });
-                }
                 
-
+                
             }catch(e){
                 alert("Could not book the event / something wrong with your booking")
             }

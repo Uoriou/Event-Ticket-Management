@@ -11,7 +11,7 @@ const pool = new Pool({
 //A function to check if the selected db exist
 //pass in the actual field event_id, and eventId var from the frontend
 async function check(eventId){
-    // ! not sure whats SELECT 1  is tbh 
+    
     try{
         const checkQuery = `
             SELECT EXISTS (
@@ -20,10 +20,10 @@ async function check(eventId){
                 WHERE event_id= $1
             );`;
         const res = await pool.query(checkQuery,[eventId]);
-        return res.rows[0].exists;
+        return res.rows[0].exists; 
     } catch (err) {
-        console.error('Error checking table existence:', err);
-        return 0;
+        //console.log('Error checking table existence:', err);
+        return false;
     }
 }
 //Export both the check function and the generic query method

@@ -12,12 +12,12 @@ services:
       POSTGRES_USER: mario
       POSTGRES_PASSWORD: mariopassword
 
-  cpp-backend:
-    build: ./cpp-backend
-    ports:
-      - "9999:9999"
-    depends_on:
-      - python-backend
+  #cpp-backend:
+    #build: ./cpp-backend
+    #ports:
+     # - "9999:9999"
+    #depends_on:
+      #- python-backend
 
   python-backend:
     build: ./python-backend

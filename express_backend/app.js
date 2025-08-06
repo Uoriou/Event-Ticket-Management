@@ -102,12 +102,13 @@ app.delete('/tickets/:id', async (req, res) => {
 
 // Booking an event, since C++ didnt work 
 app.put('/book_event/', async (req, res) => {
-    console.log(req.header);
     const { eventId,price,participants } = req.body; 
-    // If the sakes recorded for the first time, insert else add it to the db 
-    if(db.check(eventId) === 0){
+    // If the sales recorded for the first time, insert else add it to the db 
+    console.log("DB status " , await db.check(eventId)); // 
+    if(await db.check(eventId) !== true){
         //insert a new record as 0 means that the eventId does not exist in the sales table
         try {
+            console.log("Inserting new sales record for eventId:");
             const sales = price * participants;
             const result = await db.query(
                 'INSERT INTO etms_app_sale (event_id, sales, quantity) VALUES ($1, $2, $3) RETURNING *',
@@ -118,11 +119,12 @@ app.put('/book_event/', async (req, res) => {
             console.error(err);
             res.status(500).send('Internal Server Error');
         }
-    }else if(db.check(eventId) === 1){
+    }else if(await db.check(eventId)){
         //update the existing record as 1 means that the eventId exists in the sales table
         //But  add the sales to what is already there
         //Retrieve the existing sales and quantity, then update
         try {
+            console.log("Updating existing sales record for eventId:");
             const existingSale = await db.query(
                 'SELECT sales, quantity FROM etms_app_sale WHERE event_id = $1',
                 [eventId]
