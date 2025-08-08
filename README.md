@@ -11,12 +11,15 @@ To run ETMS, please ensure that your system meets the following requirements:
 - Operating System: Windows, macOS, or Linux
 - Docker / Docker desktop
 
-## Libraries Used:
+## Libraries / Technologies Used:
 
 - Python Django REST framework 
-- C++ CROW 
+- Express JS 
 - PostgreSQL server
 - React Typescript
+- Docker
+  
+  [![My Skills](https://skillicons.dev/icons?i=py,django,express,js,postgres,react,ts,docker&perline=3)](https://skillicons.dev)
 
 ## Installation Guidline
 
@@ -44,7 +47,10 @@ Access the application at:
     http://localhost:3000/login 
 ```
 
-To stop the container: Press CTRL + C 
+To stop the container and the application run:
+```bash
+    docker compose down
+```
 
 
 
