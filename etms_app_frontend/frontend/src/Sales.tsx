@@ -91,7 +91,7 @@ const Sales = ({event}:any)=>{
                 </Item> 
             </Grid>
 
-            {/*Shoe monthly sales next */}
+            {/*Show monthly sales next */}
 
            {salesReport && event ? (
                 <PieChart
