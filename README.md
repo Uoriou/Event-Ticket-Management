@@ -17,10 +17,10 @@ This platform allows easier listing of their event on the website along with a e
   * JWT token
     
   ### Databases
-  *PostgreSQL server
+  * PostgreSQL server
 
   ### Server Deployment / DevOps
-  *Docker
+  * Docker
   
   [![My Skills](https://skillicons.dev/icons?i=py,django,express,js,postgres,react,ts,docker&perline=3)](https://skillicons.dev)
 
