@@ -7,12 +7,20 @@ This platform allows easier listing of their event on the website along with a e
 
 ## Libraries / Technologies Used:
 
-- Python Django REST framework 
-- Express JS
-- JWT token 
-- PostgreSQL server
-- React Typescript
-- Docker
+  ### Frontend 
+  * React Typescript
+  * MUI material
+    
+  ### Backend 
+  * Python Django REST framework 
+  * Express JS
+  * JWT token
+    
+  ### Databases
+  *PostgreSQL server
+
+  ### Server Deployment / DevOps
+  *Docker
   
   [![My Skills](https://skillicons.dev/icons?i=py,django,express,js,postgres,react,ts,docker&perline=3)](https://skillicons.dev)
 
