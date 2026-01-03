@@ -8,7 +8,8 @@ This platform allows easier listing of their event on the website along with a e
 ## Libraries / Technologies Used:
 
 - Python Django REST framework 
-- Express JS 
+- Express JS
+- JWT token 
 - PostgreSQL server
 - React Typescript
 - Docker
@@ -53,6 +54,14 @@ This platform allows easier listing of their event on the website along with a e
   ```bash
       docker compose down
   ```
+
+## Features 
+
+* Access control (authentication) 
+* Event viewing for audiences
+* CRUD events for event admins
+* Sales dashboard for event admins (if they organize events)
+
   
 
 
