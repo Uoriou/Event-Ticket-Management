@@ -26,7 +26,7 @@ This platform allows easier listing of their event on the website along with a e
 
 ## System Architecture 
 
-![alt text](https://github.com/Uoriou/Event-Ticket-Management/blob/main/architecture.jpg?raw=true)
+![Alt text](http://architecture.jpg)
 
 
 ## Getting Started
