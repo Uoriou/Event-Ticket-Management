@@ -71,7 +71,8 @@ This platform allows easier listing of their event on the website along with a e
 
 ## Features 
 
-* Access control (authentication) 
+* User registration and login with JWT authentication
+* Protected routes and role-based access control
 * Event viewing for audiences
 * CRUD events for event admins
 * Sales dashboard for event admins (if they organize events)
