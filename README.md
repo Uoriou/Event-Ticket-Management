@@ -24,6 +24,11 @@ This platform allows easier listing of their event on the website along with a e
   
   [![My Skills](https://skillicons.dev/icons?i=py,django,express,js,postgres,react,ts,docker&perline=3)](https://skillicons.dev)
 
+## System Architecture 
+
+![alt text](https://github.com/Uoriou/Event-Ticket-Management/blob/main/architecture.jpg?raw=true)
+
+
 ## Getting Started
 
   ### Technical Requirements:
