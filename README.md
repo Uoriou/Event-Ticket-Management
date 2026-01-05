@@ -26,7 +26,7 @@ This platform allows easier listing of their event on the website along with a e
 
 ## System Architecture 
 
-![Alt text](http://architecture.jpg)
+![alt text](https://github.com/Uoriou/Uoriou/blob/main/architecture.jpg?raw=true)
 
 
 ## Getting Started
