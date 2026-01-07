@@ -1,8 +1,7 @@
 # Event Ticket Management System (ETMS)
 
 ## Project Overview
-Many musical bands, opera singers, or any kind of event organisers are looking for a website to list their events on, as they want to reach a wider audience who are also looking for events to participate in. 
-This platform allows easier listing of their event on the website along with a easier management of the events. 
+Many musical bands, opera singers, or any kind of event organisers are looking for a website to list their events to reach a wider audience who are looking for an event to participate in. This platform allows an easier listing and management of events to help faciliate the process. 
 
 
 ## Libraries / Technologies Used:
