@@ -1,4 +1,4 @@
-# Event Ticket Management System (ETMS)
+# Event Management System (Former ETMS)
 
 ## Project Overview
 Many musical bands, opera singers, or any kind of event organisers are looking for a website to list their events to reach a wider audience who are looking for an event to participate in. This platform allows an easier listing and management of events to help faciliate the process. 
