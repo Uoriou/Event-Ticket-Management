@@ -51,6 +51,8 @@ const EditEvent = ({propEventToEdit}:any) => {
                 {propEventToEdit?.map((event: Event) => (
 
                     <div key={event.id}>
+                        <Card sx={{ maxWidth: 345 }}>
+                            <CardMedia image={`http://127.0.0.1:9000/${event.image}`}  sx={{ height: 140 }} />
                          <CardContent>
                             <Typography gutterBottom variant="h5" component="div">
                                 <p>Name: {event.name}</p>
@@ -71,7 +73,10 @@ const EditEvent = ({propEventToEdit}:any) => {
                              <Typography gutterBottom variant="h5" component="div">
                                  <p>Price € {event.price}</p>
                             </Typography>
-                        </CardContent>        
+                        </CardContent> 
+                           
+                           
+                        </Card>       
                        
                         {/*Possibly navigate to EditEventMain ... */}
                         <Link to={`${event.id}`}>

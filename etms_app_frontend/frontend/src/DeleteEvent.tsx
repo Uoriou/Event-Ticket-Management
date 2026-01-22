@@ -4,6 +4,8 @@ import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ACCESS_TOKEN} from './Constants';
 import axios from 'axios';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 
 interface Event{
@@ -79,11 +81,28 @@ const DeleteEvent = ({propEvents}:any) =>{
             {propEvents?.map((event: Event) => (
 
                 <div key={event.id}>
-                    <p>Name: {event.name}</p>
-                    <p>{event.description}</p>
-                    <p>Venue: {event.venue}</p>
-                    <p>Date: {event.date}</p>
-                    <p>Price € {event.price}</p>
+                    
+                    <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                <p>Name: {event.name}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                 <p>{event.description}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                <p>Venue: {event.venue}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Date: {new Date(event.date).toLocaleDateString(undefined, {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                            </Typography>
+                             <Typography gutterBottom variant="h5" component="div">
+                                 <p>Price € {event.price}</p>
+                            </Typography>
+                        </CardContent>         
                     {/*Access control */}
                     <Button
                         variant="outlined"
