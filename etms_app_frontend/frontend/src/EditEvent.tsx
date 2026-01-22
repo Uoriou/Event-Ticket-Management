@@ -4,6 +4,11 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from './Constants';
 import { Button } from '@mui/material';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import axios from 'axios';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
 
 
 interface Event{
@@ -46,11 +51,28 @@ const EditEvent = ({propEventToEdit}:any) => {
                 {propEventToEdit?.map((event: Event) => (
 
                     <div key={event.id}>
-                        <p>Name: {event.name}</p>
-                        <p>{event.description}</p>
-                        <p>Venue: {event.venue}</p>
-                        <p>Date: {event.date}</p>
-                        <p>Price € {event.price}</p>
+                         <CardContent>
+                            <Typography gutterBottom variant="h5" component="div">
+                                <p>Name: {event.name}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                 <p>{event.description}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                <p>Venue: {event.venue}</p>
+                            </Typography>
+                            <Typography gutterBottom variant="h5" component="div">
+                                Date: {new Date(event.date).toLocaleDateString(undefined, {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric'
+                                    })}
+                            </Typography>
+                             <Typography gutterBottom variant="h5" component="div">
+                                 <p>Price € {event.price}</p>
+                            </Typography>
+                        </CardContent>        
+                       
                         {/*Possibly navigate to EditEventMain ... */}
                         <Link to={`${event.id}`}>
                             <Button
